@@ -15,7 +15,7 @@
 	
 	<bean id="employeeDao" class="org.packt.Spring.chapter2.ApplicationContext.EmployeeDaoImp"/>
 	
-	<bean id="employee" class="org.packt.Spring.chapter2.ApplicationContext.Employee">
+	<!-- <bean id="employee" class="org.packt.Spring.chapter2.ApplicationContext.Employee">-->
 		<!-- Using matching parameters as Employee class  constructor -->
 		<!--  <constructor-arg value="José Luis Sánchez Ferrusca" />
 		<constructor-arg value="29" />
@@ -32,10 +32,57 @@
 		<constructor-arg value="29" type="int"/>-->
 		
 		<!-- Using property tag as setters for the class -->
+		<!-- <property name="employeeName" value="José Luis Sánchez Ferrusca" />-->
+		
+	<!-- </bean>-->
+	
+	<bean id="employee" class="org.packt.Spring.chapter2.setterinjection.Employee">
+		<!--  Passing empy value to string-->
+		<!-- <property name="employeeName" value=""/>-->
+		
+		<!--  Passing null-->
+		<property name="employeeName">
+			<null />
+		</property>
+		
+		<property name="lists">
+			<list>
+				<value>José Luis Sánchez Ferrusca</value>
+				<value>Daniela Robles Quechol</value>
+				<value>Luis Leonardo Sánchez Robles</value>
+			</list>
+		</property>
+		<property name="sets">
+			<set>
+				<value>José Luis Sánchez Marín</value>
+				<value>Leticia Ferrusca Zamora</value>
+			</set>
+		</property>
+		
+		<property name="maps">
+			<map>
+				<entry key="brother 1" value="Iván Sánchez Ferrusca"/>
+				<entry key="brother 2" value="Edgar Sánchez Ferrusca"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean name="atmBean" class="org.packt.Spring.chapter2.setterinjection.ATM">
+		<property name="printer">
+			<bean class="org.packt.Spring.chapter2.setterinjection.Printer">
+				<property name="message" value="The balance information is printed by Printer for the account number"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="mexicanEmployee" class="org.packt.Spring.chapter2.beaninheritance.Employee" >
+	<!-- <bean id="mexicanEmployee" class="org.packt.Spring.chapter2.beaninheritance.Employee" abstract="true">  //Abstract, it only works as template-->
+		<property name="country" value="México"/>
+	</bean>
+	
+	<bean id="employeeBean" parent="mexicanEmployee">
 		<property name="employeeName" value="José Luis Sánchez Ferrusca" />
-		
-
-		
+		<property name="employeeId" value="69"/>
 	</bean>
 	
 </beans>
